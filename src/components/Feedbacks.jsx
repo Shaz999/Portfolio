@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { FaAward } from "react-icons/fa";
 
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
@@ -11,32 +12,28 @@ const FeedbackCard = ({
   certification,
   provider,
   date,
-  logo, // Added logo prop
   description,
 }) => (
   <motion.div
     variants={fadeIn("up", "spring", index * 0.5, 0.75)}
-    className="relative bg-gradient-to-r from-purple-700 to-pink-500 p-6 rounded-xl shadow-lg xs:w-[320px] w-full hover:shadow-2xl transition-shadow duration-300 ease-in-out"
+    className="relative bg-gradient-to-r from-purple-800 via-indigo-900 to-purple-900 p-6 rounded-xl shadow-xl xs:w-[320px] w-full hover:shadow-2xl transition-all duration-300 border border-purple-500/30"
   >
-    <div className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-300 hover:border-blue-400 hover:scale-105" />
-    
-    <div className="mt-1">
-      <p className="text-white tracking-wider text-[22px] font-bold">{certification}</p>
-      <p className="text-gray-200 mt-1 text-[14px]">{description}</p>
+    <div className="flex items-start justify-between">
+      <div className="p-3 bg-purple-600/40 rounded-lg border border-purple-400/40">
+        <FaAward className="text-purple-300 text-3xl" />
+      </div>
+      <span className="text-xs font-semibold px-3 py-1 bg-purple-950/80 text-purple-300 rounded-full border border-purple-500/40">
+        {date}
+      </span>
+    </div>
 
-      <div className="mt-4 flex justify-between items-center gap-1">
-        <div className="flex-1 flex flex-col">
-          <p className="text-white text-[16px] font-semibold">{provider}</p>
-          <p className="mt-1 text-gray-300 text-[14px]">{date}</p>
-        </div>
+    <div className="mt-4">
+      <p className="text-white tracking-wide text-[20px] font-extrabold leading-snug">{certification}</p>
+      {description && <p className="text-gray-300 mt-2 text-[14px] leading-relaxed">{description}</p>}
 
-        {logo && (
-          <img
-            src={logo}
-            alt={provider}
-            className="w-10 h-10 rounded-full object-cover border-2 border-white"
-          />
-        )}
+      <div className="mt-5 pt-3 border-t border-purple-500/20 flex justify-between items-center">
+        <p className="text-purple-300 text-[15px] font-semibold">{provider}</p>
+        <span className="text-xs text-gray-400">Verified</span>
       </div>
     </div>
   </motion.div>

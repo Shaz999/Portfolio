@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 import { styles } from "../styles";
 import { fadeIn, textVariant } from "../utils/motion";
+import { SectionWrapper } from "../hoc";
 
 // EducationCard component
 const EducationCard = ({ index, degree, institution, year, percentage }) => (
@@ -59,7 +60,7 @@ const EducationSection = () => {
     <>
       <motion.div 
         variants={textVariant()} 
-        className="mt-20 text-center"
+        className="mt-10 text-center"
       >
         <h2 className={`${styles.sectionHeadText} text-white text-[36px] font-extrabold mb-4`}>
           Education
@@ -79,4 +80,4 @@ const EducationSection = () => {
   );
 };
 
-export default EducationSection;
+export default SectionWrapper(EducationSection, "education");

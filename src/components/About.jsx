@@ -1,44 +1,66 @@
 import React from "react";
 import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
-import { FaCode, FaShieldAlt, FaLaptopCode } from "react-icons/fa";
 
-const IntroCard = () => {
+import { styles } from "../styles";
+import { services } from "../constants";
+import { SectionWrapper } from "../hoc";
+import { fadeIn, textVariant } from "../utils/motion";
+
+const ServiceCard = ({ index, title, icon }) => (
+  <Tilt className="xs:w-[250px] w-full">
+    <motion.div
+      variants={fadeIn("right", "spring", index * 0.5, 0.75)}
+      className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card hover:scale-105 transition-transform duration-300"
+    >
+      <div
+        options={{
+          max: 45,
+          scale: 1,
+          speed: 450,
+        }}
+        className="bg-tertiary rounded-[20px] py-8 px-6 min-h-[280px] flex justify-evenly items-center flex-col border border-purple-500/20"
+      >
+        <img
+          src={icon}
+          alt={title}
+          className="w-16 h-16 object-contain"
+        />
+
+        <h3 className="text-white text-[20px] font-bold text-center">
+          {title}
+        </h3>
+      </div>
+    </motion.div>
+  </Tilt>
+);
+
+const About = () => {
   return (
-    <div className="flex justify-center items-center my-10">
-      <Tilt className="w-full md:w-[600px]">
-        <motion.div
-          className="bg-gradient-to-r from-pink-500 to-purple-600 p-1 rounded-2xl shadow-lg"
-          whileHover={{ scale: 1.05 }}
-        >
-          {/* Replace 'bg-tertiary' with your desired background color */}
-          <div className="bg-gray-900 rounded-2xl py-10 px-8 flex flex-col items-center shadow-xl"> {/* Adjusted color */}
-            <h2 className="text-white text-4xl font-extrabold text-center mb-3">
-              Introduction
-            </h2>
-            <p className="text-gray-300 text-center mb-6 text-lg">
-              I'm a passionate Software Developer focused on creating innovative solutions in cybersecurity and technology. 
-              I believe in the power of code to transform ideas into reality.
-            </p>
-            <div className="flex space-x-8 mb-6">
-              <div className="flex flex-col items-center">
-                <FaCode className="text-purple-400 text-5xl mb-1 transition-transform duration-300 transform hover:scale-110" />
-                <span className="text-gray-300 font-medium">Coding Enthusiast</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <FaShieldAlt className="text-purple-400 text-5xl mb-1 transition-transform duration-300 transform hover:scale-110" />
-                <span className="text-gray-300 font-medium">Cybersecurity Advocate</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <FaLaptopCode className="text-purple-400 text-5xl mb-1 transition-transform duration-300 transform hover:scale-110" />
-                <span className="text-gray-300 font-medium">Tech Innovator</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </Tilt>
-    </div>
+    <>
+      <motion.div variants={textVariant()}>
+        <p className={styles.sectionSubText}>Introduction</p>
+        <h2 className={styles.sectionHeadText}>Overview.</h2>
+      </motion.div>
+
+      <motion.p
+        variants={fadeIn("", "", 0.1, 1)}
+        className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
+      >
+        I'm a skilled AI Engineer & AI/ML Developer with expertise in building intelligent systems, 
+        deploying local LLMs (Ollama, Llama), architecting Retrieval-Augmented Generation (RAG) pipelines 
+        with LangChain, and training computer vision models (YOLOv8, OpenCV). I specialize in Python, FastAPI, 
+        SQL Server, and Docker to deliver enterprise-grade AI solutions, offline document processing assistants, 
+        and high-accuracy predictive analytics.
+      </motion.p>
+
+      <div className="mt-14 flex flex-wrap gap-8 justify-center">
+        {services.map((service, index) => (
+          <ServiceCard key={service.title} index={index} {...service} />
+        ))}
+      </div>
+    </>
   );
 };
 
-export default IntroCard;
+export default SectionWrapper(About, "about");

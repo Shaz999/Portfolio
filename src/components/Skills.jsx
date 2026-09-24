@@ -1,10 +1,11 @@
 import React from "react";
 import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
-import { FaCode, FaShieldAlt, FaDatabase, FaHtml5, FaCss3Alt, FaPython, FaJsSquare, FaReact } from 'react-icons/fa'; // Import the desired icons
+import { FaCode, FaShieldAlt, FaDatabase, FaPython, FaReact, FaBrain, FaRobot, FaMicrochip, FaProjectDiagram } from 'react-icons/fa';
 
 import { styles } from "../styles";
 import { fadeIn, textVariant } from "../utils/motion";
+import { SectionWrapper } from "../hoc";
 
 // SkillCard component
 const SkillCard = ({ index, skill, proficiency, icon }) => (
@@ -27,22 +28,22 @@ const SkillCard = ({ index, skill, proficiency, icon }) => (
 const SkillsSection = () => {
   // Skills data with icons
   const skills = [
-    { skill: "C++", proficiency: "Advanced", icon: <FaCode /> },
-    { skill: "Java", proficiency: "Intermediate", icon: <FaCode /> },
+    { skill: "Machine Learning", proficiency: "Advanced", icon: <FaBrain /> },
+    { skill: "Artificial Intelligence", proficiency: "Advanced", icon: <FaRobot /> },
     { skill: "Python", proficiency: "Advanced", icon: <FaPython /> },
-    { skill: "HTML", proficiency: "Advanced", icon: <FaHtml5 /> },
-    { skill: "CSS", proficiency: "Advanced", icon: <FaCss3Alt /> },
-    { skill: "JavaScript", proficiency: "Intermediate", icon: <FaJsSquare /> },
-    { skill: "SQL", proficiency: "Advanced", icon: <FaDatabase /> },
-    { skill: "React", proficiency: "Intermediate", icon: <FaReact /> },
-    { skill: "Cyber Security", proficiency: "Intermediate", icon: <FaShieldAlt /> },
+    { skill: "Deep Learning", proficiency: "Intermediate", icon: <FaMicrochip /> },
+    { skill: "Computer Vision", proficiency: "Intermediate", icon: <FaProjectDiagram /> },
+    { skill: "SQL & Data Science", proficiency: "Advanced", icon: <FaDatabase /> },
+    { skill: "C++ & Java", proficiency: "Advanced", icon: <FaCode /> },
+    { skill: "React JS", proficiency: "Intermediate", icon: <FaReact /> },
+    { skill: "AI for Cyber Security", proficiency: "Intermediate", icon: <FaShieldAlt /> },
   ];
 
   return (
-    <div className="px-4 sm:px-10 lg:px-20"> {/* Added padding to the left and right */}
+    <div className="px-4 sm:px-10 lg:px-20">
       <motion.div
         variants={textVariant()}
-        className="mt-20 text-center"
+        className="mt-10 text-center"
       >
         <h2 className={`${styles.sectionHeadText} text-white text-[36px] font-extrabold mb-4`}>
           Skills
@@ -62,4 +63,4 @@ const SkillsSection = () => {
   );
 };
 
-export default SkillsSection;
+export default SectionWrapper(SkillsSection, "skills");
