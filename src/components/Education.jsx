@@ -39,8 +39,8 @@ const EducationSection = () => {
     {
       degree: "B.Tech in Computer Science Engineering with Cyber Security & Digital Forensics",
       institution: "VIT Bhopal",
-      year: "2021 - Ongoing",
-      percentage: null, // No percentage since it's ongoing
+      year: "2021 - 2025",
+      percentage: 85.2, // No percentage since it's ongoing
     },
     {
       degree: "Class XII",
@@ -58,8 +58,8 @@ const EducationSection = () => {
 
   return (
     <>
-      <motion.div 
-        variants={textVariant()} 
+      <motion.div
+        variants={textVariant()}
         className="mt-10 text-center"
       >
         <h2 className={`${styles.sectionHeadText} text-white text-[36px] font-extrabold mb-4`}>
